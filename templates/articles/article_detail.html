@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+    <style>
+        .body{
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .content{
+            float: left;
+            width: 70%;
+        }
+
+        h1{
+            font-size: 8vh;
+        }
+
+        .content > *{
+            margin: 10px 0;
+
+        }
+
+        .article-meta{
+            font-size: 12px;
+        }
+
+        .article-meta-links {
+            display: inline-flex;
+            font-size: 15px;
+
+        }
+
+        .article-meta-links a{
+            margin: 0 10px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        .article-second-p{
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        form{
+            margin: 10px 0;
+        }
+
+        .comment-div{
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid grey;
+        }
+
+
+        textarea{
+            display: block;
+            height: 100px;
+            width: 100%;        
+        }
+        .popup{
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        .popup-content {
+            background-color:#fefefe;
+            margin: 5px auto; /* 15% from the top and centered */
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes animatezoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+    </style>
+    
+{% endblock %}
+{% block content %}
+<section class="body">
+    <section class="content">
+        <h1> {{object.title}} </h1>
+        <p> {{ object.summary }} </p>
+        <div class="article-meta">
+            <span> By </span>
+            {% for author in object.get_authors %}
+            <span>   <a href="{% url 'writerspage' author.id %}"> {{ author.get_full_name }}  </a> </span>
+            {% endfor %}
+            <p class="article-second-p"> <span> {{ object.created }} </span>
+            
+            {% if user.is_writer %}
+            <span class="article-meta-links">
+                <a class="update-article"  href="{% url 'article_update' object.id %}"> Update Article </a>
+                <a class="delete-article" href="{% url 'article_delete' object.id %}"> Delete Article </a>
+            </span>
+            {% endif %}
+
+             </p>
+        </div>
+        {% if object.image.url %}
+            <img src="{{ object.image.url }}" alt="">
+        {% endif %}
+        
+        <section> {{object.body|safe}} <section>
+       
+        {% if user.is_authenticated %}
+
+        <form action="" method="post" enctype="multipart/form-data" >{% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-info ml- " type="submit"> Submit </button>
+        </form>
+        
+        {% endif %}
+        <div class="comments">
+        {% if comments %}
+            {% for comment in comments %}
+            {% if comment.is_comment %}
+                <div class="comment-div">
+                    <h4> <i class="fa-solid fa-chevron-down"></i> {{ comment.author.get_full_name }} <span style="font-size: 10px;"> {{ comment.created }}</span></h4>
+                    <p> {{ comment.comment}} </p>
+                    <a class="reply" id = "{{ comment.id }}"><i class="fa-solid fa-comment"></i></a>
+                <div class="reply-div" style="margin-left: 20px;">
+                    {% if comment.has_reply %}
+                        {% for replies in comment.all_replies %}
+                        <p> {{ replies.comment }} </p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                </div >
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div class="popup">
+            <div class="popup-content">
+                <form action="">
+                    {% csrf_token %}
+                    <input type="text" id="replyValue">
+                    <button class="comment-button"> Comment </button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="side-bar">
+
+    </section>
+    
+</section>
+
+<script>
+
+$(document).ready(function() {
+      console.log($.ajax);
+    });
+
+var id;
+
+var replylinks = document.querySelectorAll('.reply');
+
+
+replylinks.forEach(function (item) {
+        item.addEventListener('click', function () {
+            document.querySelector('.popup').style.display = 'block';
+            id = item.id
+        });
+    });
+
+$(".comment-button").on('click', function(){
+    $.ajax({url: "{% url 'comment_create' %}",
+        type: 'POST', 
+        data: {
+            comment: $('#replyValue').val(),
+            link: id,
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        success: function(res) {
+            console.log(res);
+
+        }
+    });
+
+});
+
+/**
+$('.create-comment#').on('click', function(e){
+    $.ajax({url: "{% url 'comment_create' %}",
+        type: 'POST',
+
+    })
+})
+**/
+    var modal = document.getElementsByClassName('.popup');
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+            if (event.target == modal) {
+                console.log(event);
+        modal.style.display = "none";
+  }
+}
+
+</script>
+{% endblock %} 
+
+

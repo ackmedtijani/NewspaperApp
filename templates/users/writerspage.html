@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} <title> {{ object.first_name}}'s page </title> {% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'writerspages.css' %}"> 
+{% endblock %}
+{% block content %}
+
+<div class="content">
+ 
+    <section class="writer-section">
+        <div class="writer-bio">
+            <div class="bio">
+                <img src="{{ writerbio.image.url }}" alt="">
+                <div class="wordings">
+                    <h2 class="bio-name"> {{object.first_name}} {{object.last_name}}</h2>
+                    <a class="article-create" href = "{% url 'article_create' %}"> Create Article </a>
+                    <p class="education"> Education:  Cornell University, BA in history </p>
+                    <p class="bio-paragraph">Jeff Stein is the White House economics reporter for The Washington Post. 
+                        Since joining The Washington Post in November 2017, he has covered the Republican tax law; 
+                        the government shutdown; and the administration's economic response to the coronavirus, among other topics. 
+                        In 2014, he founded the local news nonprofit the Ithaca Voice in Upstate New York. 
+                        The Ithaca Voice has a full-time staff of reporters and remains the best publication in the city
+                    </p>
+                </div>
+            </div>
+
+            <div class="socials">
+                <a href="www.facebook.com"> <i class="fa-brands fa-facebook-f"></i> </a>
+                <a href="www.twitter.com" > <i class="fa-brands fa-twitter"></i></a>
+                <a href="www.linkedin.com"> <i class="fa-brands fa-linkedin"></i> </a>
+            </div>
+
+
+        </div>
+        <h3> Latest from {{object.first_name}} {{ object.last_name}} </h3>
+       <div class="articles">
+            <div class="articles-lists">
+            {% if articles %}
+                {% for item in articles %}
+                <div class="article-box">
+                    <h2> <a href="{% url 'article_detail' item.id %} "> {{ item.title}} </a></h2>
+                    <p> {{ item.summary}} </p>
+                    <p> {{ item.author.first_name }} {{ item.author.last_name}} </p>
+                </div>
+                {% endfor %}
+
+            {% endif %}
+            </div>
+       </div>
+        
+    </section>
+
+</div>
+
+{% endblock %}

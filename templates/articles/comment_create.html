@@ -1,0 +1,13 @@
+{% block content %}
+
+<div class="content">
+
+    <h1>Create Article</h1>
+    <form action="" method="post" enctype="multipart/form-data" >{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="create-comment#" type="submit">Create Article</button>
+    </form>
+
+</div>
+{% endblock %}  

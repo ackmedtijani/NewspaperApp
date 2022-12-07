@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load socialaccount %}
+{% load static %}
+{% block title %} 
+    <title> Login </title>
+{% endblock %}
+
+{% block extra_head %}
+    <link rel = 'stylesheet' href="{% static 'signup.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="signup-box">
+    <h2 class="">Login</h2>
+    <a href="{% provider_login_url 'github' process = 'connect' %}" class="btn btn-secondary">
+        <i class="fa-brands fa-github"></i>
+        <span>Login with GitHub</span>
+     </a>
+    <form method="post"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success ml- " type="submit">Login</button>
+    </form>
+
+</div>
+{% endblock %}

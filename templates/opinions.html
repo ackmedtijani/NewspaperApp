@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Newspaper App</title>
+
+{% endblock %}
+
+{% block extra_head %}
+    <link rel = "stylesheet" href="{% static 'opinions.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<section class="body">
+    <h1> Opinion </h1>
+        <section class="content">
+        <div class="content-container">
+            {% if object_list %}
+                {% for object in object_list %}
+                <div class="content-box">
+                    <div class="word">
+                        <h2> 
+                            <a href="{% url 'article_detail' object.id %} "> {{ object.title }} </a> 
+                        </h2>
+                        <p>  {{ object.summary }} </p>
+                        {% for author in object.get_authors %}
+                            <span class="author"> <small><a href="{% url 'writerspage' author.id %}" > {{ author.get_full_name }} </a> </small> </span>
+                        {% endfor %}
+                    </div>
+
+                    <img src="{{ object.image.url }}">
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            
+        </div>
+        </section>
+        <section class="sidebar">
+            <div class="sidebar-container">
+                <div class="sidebox-header">
+                    <img src="img/black-and-white-1-1435091.jpg">
+                    <h2> <a href="#">
+                      Ibram X. Kendi encourages kids to ask difficult questions about U.S. history</a></h2>
+                </div>
+                <div class="sidebox">
+                    <p> <a href="#"> How to customize your lock screen and 9 other iOS 16 tricks </a> </p>
+                    <img src="img/pelosi.webp">
+                </div>
+
+                <div class="sidebox">
+                    <p> How to customize your lock screen and 9 other iOS 16 tricks </p>
+                    <img src="img/great-theater-warsaw-1056499.jpg">
+                </div>
+
+                <div class="sidebox">
+                    <p> How to customize your lock screen and 9 other iOS 16 tricks </p>
+                    <img src="img/evian-g8-summit-protests-in-geneva-2381005.jpg">
+                </div>
+            </div>
+        </section>
+
+</section>
+{% endblock %}

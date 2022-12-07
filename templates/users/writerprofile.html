@@ -1,0 +1,108 @@
+{% extends 'base.html' %} 
+{% block extra_head %} 
+    <style>
+        .contents{
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
+        }
+        form > p:first-of-type > :not(:first-child):not(:last-child){
+            display: none;
+        }
+
+        form > p{
+            margin: 10px 0;
+            position: relative;
+        }
+
+        p > *{
+            margin: 10px 0;
+        }
+
+        p:first-of-type{
+            position: relative
+        }
+
+        p:first-of-type > label{
+            position: absolute;
+            left: 14%;
+            top: 45%;
+            z-index: 10;
+        }
+
+        form > p:nth-of-type(3) > *{
+            margin-right: 5px;
+        }
+
+        form > p:nth-of-type(2) > label{
+            display: block;
+        }
+
+        form > p:nth-of-type(2) > textarea{
+            margin-left: 30px;
+        }
+
+        p > input{
+            width:100%;
+        }
+
+        textarea{
+            display: block;
+            width: 90%;
+            object-fit: cover;
+            margin: 0;
+            
+        }
+
+        select{
+            width: 100%;
+            padding: 10px 5px;
+        }
+
+
+        #id_education{
+            padding: 8px;
+        }
+
+        button{
+            padding: 10px;
+            background-color: grey;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+
+        button:hover{
+            opacity: 0.8;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+<div class="contents">
+    <h1>Edit</h1>
+    <p>User Image: </p>
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+    <button class="btn btn-info ml- " type="submit">Update</button>
+    </form>
+
+    
+
+    <script>
+        var label = document.querySelector('label')
+        label.innerHTML = "<i class = 'fa-solid fa-camera' ></i>";
+        var first_p = document.querySelectorAll('p')[1]
+        document.querySelectorAll('p')[1].childNodes[5].nodeValue = '';
+        document.querySelectorAll('p')[1].childNodes[2].nodeValue = '';
+        var image_display = document.createElement('img');
+        image_display.className = 'image_display';
+        image_display.src = '{{object.image.url}}';
+        first_p.append(image_display);
+        image_display.style ="vertical-align: middle; height: 200px; width: 200px; object-fit: cover; border-radius: 50%; border: 1px black solid; margin: 1em 0;"
+    
+
+    </script>
+</div>
+{% endblock %}  

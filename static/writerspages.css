@@ -1,0 +1,56 @@
+.content{
+    margin: auto;
+    max-width: 1000px;
+}
+
+.bio {
+    display: flex;
+    gap: 5%;
+    margin: 2em 0;
+}
+
+.bio img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wordings > *{
+    margin: 0.5em 0;
+}
+
+.socials{
+    padding: 1em 0;
+    border-bottom: 1px black solid;
+    border-top: 1px black solid;
+    margin: 1em 0;
+}
+.socials > *{
+    margin-right: 1em;
+}
+
+.articles-lists{
+    margin: 2em 0 ;
+    float: left;
+    max-width: 650px;
+    padding-right: 2em;
+    border-right: 1px solid grey;
+}
+
+.articles-lists > *{
+    margin-bottom: 1em;
+}
+
+h2{
+    display: inline;
+}
+
+.article-create{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+

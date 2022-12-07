@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Newspaper App</title>
+
+{% endblock %}
+
+{% block extra_head %}
+    <link rel = "stylesheet" href="{% static 'style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+<section class="news-headlines">
+    <div class = "box" >
+        <div class = "word">
+            <p class="news-class"> <a href="#">  Headlines <i class="fas fa-chevron-right"> </i> </a></p>
+            <h1> 
+                <a href="#"> Ten fataly shot dead at a drive by shooting in Harlem </a> 
+            </h1>
+            <p> The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
+            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham</p>
+            <p class="author"> By Tijani Oboirien </p>
+        </div>
+        <img src="{% static 'img/road-accident.jpg' %}">
+    </div>
+    <div class="box">
+        <div class = "word">
+            <p class="news-class"> <a href="#"> Headlines <i class="fas fa-chevron-right"> </i> </a></p>
+            <h1> 
+                <a href="#"> Strike: FG may consider out-of-court settlement with ASUU </a>
+            </h1>
+            <p> Days after dragging the Academic Staff Union of Universities before the National Industrial Court, the Federal Government may consider an out-of-court settlement with the union, Saturday PUNCH has learnt</p>
+            <p class="author"> By Tijani Oboirien </p>
+        </div>
+        <img src="{% static 'img/imrs.webp' %}">
+    </div>
+
+    <section class="grid">
+        <h4>
+            <a href="#"> Opinions  <i class="fas fa-chevron-right"> </i></a>
+        </h4>
+        <div class="grid-container">
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Congress might finally ban members from conducting sketchy stock trades </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/pelosi.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Princesses in sexual and reproductive peril? They're just like us </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/HOD.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/imrs.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/HOD.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/imrs.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/carbon.jpg' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/imrs.webp' %}">
+            </div>
+            <div class="grid-box"> 
+                <div class="words">
+                    <h4> Why should Obidients be the ones to bring decorum? </h4>
+                    <p><a> Opinion by Tijani Ahmed</a></p>
+                </div>
+                <img src="{% static 'img/imrs.webp' %}">
+            </div>   
+        </div>
+    </section>
+
+    <section class="collage">
+        <div class="first-collage">
+            <img src="{% static 'img/great-theater-warsaw-1056499.jpg' %}">
+            <h2> <a> Are soul mates real, according to science </a></h2>
+            <p> Alaska and Puerto Rico, where recovery efforts will be particularly challenging, are dealing with prolific wind and flooding </p>
+            <p> <a> By Tijani Oboirien </a></p>
+        </div>
+        <div class="second-collage">
+            <div class="collage-box">
+                <img src="{% static 'img/carbon.jpg' %}">
+                <h4>Ask a Doctor: Why are so many viruses popping up again?</h4>
+                <p> By Tijani Oboirien</p>
+            </div>
+            <div>
+                <img src="{% static 'img/great-theater-warsaw-1056499.jpg' %}">
+                <h4>12 questions to measure your workplace happiness</h4>
+                <p> By Tijani Oboirien</p>
+            </div>
+            <div>
+                <img src="{% static 'img/imrs.webp' %}">
+                <h4>Why it is awesome that your brain can experience awe</h4>
+                <p> By Tijani Oboirien</p>
+            </div>
+            <div>
+                <img src="{% static 'img/imrs(1).webp' %}">
+                <h4>Women reconsider running gear, safety after Eliza Fletcher’s death</h4>
+                <p> By Tijani Oboirien</p>
+            </div>
+        </div>
+    </section>
+</section>
+<section class="links">
+    <div class="links-box">
+        <ul>
+                <li><h3>What's New</h3></li>
+                <li><a href="#">Surface Pro X</a></li>
+                <li><a href="#">Surface Laptop 3</a></li>
+                <li><a href="#">Surface Pro 7</a></li>
+                <li><a href="#">Windows 10 apps</a></li>
+                <li><a href="#">Office apps</a></li>
+              </ul>
+        <ul>
+            <li><h3>Microsoft Store</h3></li>
+            <li><a href="#">Account Profile</a></li>
+            <li><a href="#">Download Center</a></li>
+            <li><a href="#">Microsoft Store support</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Older tracking</a></li>
+          </ul>
+          <ul>
+            <li><h3>Education</h3></li>
+            <li><a href="#">Microsfot in education</a></li>
+            <li><a href="#">Office for students</a></li>
+            <li><a href="#">Office 365 for schools</a></li>
+            <li><a href="#">Deals for studentss</a></li>
+            <li><a href="#">Microsfot Azure</a></li>
+          </ul>
+          <ul>
+            <li><h3>Enterprise</h3></li>
+            <li><a href="#">Azure</a></li>
+            <li><a href="#">AppSource</a></li>
+            <li><a href="#">Automotive</a></li>
+            <li><a href="#">Government</a></li>
+            <li><a href="#">Healthcare</a></li>
+          </ul>
+          <ul>
+            <li><h3>Developer</h3></li>
+            <li><a href="#">Visual Studio</a></li>
+            <li><a href="#">Windowszs Dev Center</a></li>
+            <li><a href="#">Developer Network</a></li>
+            <li><a href="#">TechNet</a></li>
+            <li><a href="#">Microsoft Developer</a></li>
+          </ul>
+          <ul>
+            <li><h3>Company</h3></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">About Microsoft</a></li>
+            <li><a href="#">Company news</a></li>
+            <li><a href="#">Privacy at Microsoft</a></li>
+            <li><a href="#">Inverstors</a></li>
+          </ul>
+    </div>
+    </section>
+
+    <footer>
+        <div class="inner-footer">
+            <p><i class="fas fa-globe fa-2x"></i> English (United States) </p>
+            <ul>
+                <li><a> Sitmap </a></li>
+                <li><a href="#">Contact Microsoft</a></li>
+                <li><a href="#">Privacy & cookies</a></li>
+                <li><a href="#">Terms of use</a></li>
+                <li><a href="#">Trademarks</a></li>
+                <li><a href="#">Safety & eco</a></li>
+                <li><a href="#">About our ads</a></li>
+                <li><a href="#">&copy; Newspaper Apps 2020</a></li>
+            </ul>
+        </div>
+        
+    </footer>
+
+</body>
+
+
+
+
+{% endblock %}
